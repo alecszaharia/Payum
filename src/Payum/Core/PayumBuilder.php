@@ -2,6 +2,7 @@
 namespace Payum\Core;
 
 use Payum\AuthorizeNet\Aim\AuthorizeNetAimGatewayFactory;
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBGatewayFactory;
 use Payum\Be2Bill\Be2BillDirectGatewayFactory;
 use Payum\Be2Bill\Be2BillOffsiteGatewayFactory;
 use Payum\Core\Bridge\PlainPhp\Security\HttpRequestVerifier;
@@ -553,7 +554,7 @@ class PayumBuilder
             'paypal_masspay' => PaypalMasspayGatewayFactory::class,
             'paypal_rest' => PaypalRestGatewayFactory::class,
             'authorize_net_aim' => AuthorizeNetAimGatewayFactory::class,
-            'authorize_net_arb' => \AuthorizeNetARBGatewayFactory::class,
+            'authorize_net_arb' => AuthorizeNetARBGatewayFactory::class,
             'be2bill_direct' => Be2BillDirectGatewayFactory::class,
             'be2bill_offsite' => Be2BillOffsiteGatewayFactory::class,
             'klarna_checkout' => KlarnaCheckoutGatewayFactory::class,
