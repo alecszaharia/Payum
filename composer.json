@@ -44,7 +44,8 @@
         "php-http/message": "^1.0",
         "php-http/client-implementation": "^1.0",
         "league/uri": "^5.0",
-        "twig/twig": "~1.0|~2.0"
+        "twig/twig": "~1.0|~2.0",
+        "authorizenet/authorizenet": "~1.8"
     },
     "require-dev": {
         "ext-curl": "*",
@@ -65,7 +66,6 @@
         "symfony/validator": "^3.1|^4.0",
         "symfony/phpunit-bridge": "^3.1|^4.0",
         "symfony/dependency-injection": "^3.1|^4.0",
-        "authorizenet/authorizenet": "~1.8",
         "sofort/sofortlib-php": "^3.0",
         "paypal/rest-api-sdk-php" : "0.5.*",
         "klarna/checkout": "~1|~2.0",
