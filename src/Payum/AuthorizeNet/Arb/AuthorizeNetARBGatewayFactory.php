@@ -7,6 +7,12 @@
  */
 namespace Payum\AuthorizeNet\Arb;
 
+use Payum\AuthorizeNet\Arb\Action\CancelSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\CreateSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\GetSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\GetSubscriptionListAction;
+use Payum\AuthorizeNet\Arb\Action\GetSubscriptionStatusAction;
+use Payum\AuthorizeNet\Arb\Action\UpdateSubscriptionAction;
 use Payum\Core\GatewayFactory;
 use Payum\Core\Bridge\Spl\ArrayObject;
 
