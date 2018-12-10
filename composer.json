@@ -88,7 +88,8 @@
         "payum/payex": "self.version",
         "payum/offline": "self.version",
         "payum/stripe": "self.version",
-        "payum/sofort": "self.version"
+        "payum/sofort": "self.version",
+        "alecszaharia/authorize-net-arb": "self.version"
     },
     "conflict": {
         "league/uri-components": "<1.7.1"

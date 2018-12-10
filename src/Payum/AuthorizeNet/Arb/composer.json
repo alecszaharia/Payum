@@ -1,0 +1,23 @@
+{
+    "name": "alecszaharia/authorize-net-arb",
+    "description": "The Payum extension. It provides Authorize.Net ARB integration",
+    "type": "library",
+    "require": {
+        "authorizenet/authorizenet": "^1.9",
+        "payum/core": "^1.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-0": { "Payum\\AuthorizeNet\\Arb": "" }
+    },
+    "target-dir": "Payum/AuthorizeNet/Arb",
+    "authors": [
+        {
+            "name": "Alexandru Zaharia",
+            "email": "alecszaharia@gmail.com"
+        }
+    ]
+}

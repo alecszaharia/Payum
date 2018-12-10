@@ -14,8 +14,7 @@ fi
 
 CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 
-for REMOTE in origin core paypal-express-checkout paypal-pro-checkout paypal-pro-hosted authorize-net-aim be2bill paypal-masspay \
-    paypal-ipn paypal-rest offline payex klarna-checkout klarna-invoice stripe sofort skeleton
+for REMOTE in origin authorize-net-arb
 do
     echo ""
     echo ""
@@ -32,11 +31,11 @@ do
         git clone $REMOTE_URL . --depth=200
         git checkout $CURRENT_BRANCH;
         # gsort comes with coreutils packages. brew install coreutils
-        LAST_RELEASE=$(git tag -l [0-9].* | gsort -V | tail -n1 )
+        LAST_RELEASE=$(git tag -l [0-9].* | sort -V | tail -n1 )
         if [[ -z "$LAST_RELEASE" ]]; then
             echo "There has not been any releases. Releasing $1";
 
-            git tag $1 -s -m "Release $1"
+            git tag $1 -m "Release $1"
             git push origin --tags
         else
             echo "Last release $LAST_RELEASE";
@@ -46,7 +45,7 @@ do
             if [[ ! -z "$CHANGES_SINCE_LAST_RELEASE" ]]; then
                 echo "There are changes since last release. Releasing $1";
 
-                git tag $1 -s -m "Release $1"
+                git tag $1 -m "Release $1"
                 git push origin --tags
             else
                 echo "No change since last release.";

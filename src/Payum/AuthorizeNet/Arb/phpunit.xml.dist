@@ -1,0 +1,35 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="true"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         bootstrap="Tests/bootstrap.php"
+>
+    <php>
+        <var name="__PAYUM_AUTHORIZE_NET_ARB_API_LOGIN_ID" value="F6Jx2Mj3Q"/>
+        <var name="__PAYUM_AUTHORIZE_NET_ARB_API_TRANSACTION_KEY" value="A4gEy64m934wHK8Bh"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="Payum AuthorizeNetArb Component Test Suite">
+            <directory>./Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
