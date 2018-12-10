@@ -6,7 +6,7 @@
  * Time: 11:59 PM
  */
 
-namespace Transform;
+namespace Payum\AuthorizeNet\Arb\Transform;
 
 trait ArrayObjectTransform
 {

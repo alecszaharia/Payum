@@ -5,6 +5,7 @@
  * Date: 12/3/18
  * Time: 11:41 PM
  */
+namespace Payum\AuthorizeNet\Arb;
 
 use Payum\Core\GatewayFactory;
 use Payum\Core\Bridge\Spl\ArrayObject;

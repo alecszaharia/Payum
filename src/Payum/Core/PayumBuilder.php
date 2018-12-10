@@ -553,6 +553,7 @@ class PayumBuilder
             'paypal_masspay' => PaypalMasspayGatewayFactory::class,
             'paypal_rest' => PaypalRestGatewayFactory::class,
             'authorize_net_aim' => AuthorizeNetAimGatewayFactory::class,
+            'authorize_net_arb' => \AuthorizeNetARBGatewayFactory::class,
             'be2bill_direct' => Be2BillDirectGatewayFactory::class,
             'be2bill_offsite' => Be2BillOffsiteGatewayFactory::class,
             'klarna_checkout' => KlarnaCheckoutGatewayFactory::class,

@@ -5,8 +5,9 @@
  * Date: 12/4/18
  * Time: 12:55 AM
  */
+namespace Payum\AuthorizeNet\Arb\Request;
 
-use Concern\AuthorizeSubscriptionTypeAware;
+use Payum\AuthorizeNet\Arb\Request\Concern\AuthorizeSubscriptionTypeAware;
 use Payum\Core\Request\Generic;
 
 class CreateSubscriptionRequest extends Generic

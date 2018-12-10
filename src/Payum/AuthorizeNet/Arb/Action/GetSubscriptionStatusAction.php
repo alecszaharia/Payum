@@ -5,7 +5,9 @@
  * Date: 12/3/18
  * Time: 11:49 PM
  */
+namespace Payum\AuthorizeNet\Arb\Action;
 
+use Payum\AuthorizeNet\Arb\Request\GetSubscriptionStatusRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use \Payum\Core\GatewayAwareInterface;

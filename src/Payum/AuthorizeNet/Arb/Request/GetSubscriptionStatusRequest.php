@@ -5,8 +5,8 @@
  * Date: 12/4/18
  * Time: 12:56 AM
  */
+namespace Payum\AuthorizeNet\Arb\Request;
 
-use Payum\Core\Request\Generic;
 
 class GetSubscriptionStatusRequest
 {

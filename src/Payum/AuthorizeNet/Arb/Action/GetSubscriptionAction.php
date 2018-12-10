@@ -5,14 +5,17 @@
  * Date: 12/3/18
  * Time: 11:48 PM
  */
+namespace Payum\AuthorizeNet\Arb\Action;
 
 use net\authorize\api\contract\v1\SubscriptionDetailType;
+use Payum\AuthorizeNet\Arb\Request\GetSubscriptionRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use \Payum\Core\GatewayAwareInterface;
 use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
 use \Payum\Core\GatewayAwareTrait;
+use Payum\Core\Model\ArrayObject;
 
 class GetSubscriptionAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
