@@ -10,8 +10,8 @@ namespace Payum\AuthorizeNet\Arb\Request\Concern;
 
 
 use net\authorize\api\contract\v1\SubscriptionDetailType;
+use Payum\AuthorizeNet\Arb\Transform\ArrayObjectTransform;
 use Payum\Core\Request\Generic;
-use Transform\ArrayObjectTransform;
 
 trait AuthorizeSubscriptionTypeAware
 {
