@@ -10,9 +10,10 @@ namespace Payum\AuthorizeNet\Arb\Transform;
 
 trait ArrayObjectTransform
 {
-    protected function toArrayObject($object)
+    protected function toArrayObject($object, $model)
     {
-        $return = new \ArrayObject();
+        if (!$model)
+            $model = new \ArrayObject();
 
         if (\is_object($object)) {
             $refClass = new \ReflectionClass(\get_class($object));
@@ -27,9 +28,9 @@ trait ArrayObjectTransform
                 $value = $object->$getterMethod();
 
                 if (\is_object($value)) {
-                    $return[$property->getName()] = $this->toArrayObject($value);
+                    $this->toArrayObject($value, $model[$property->getName()]);
                 } else {
-                    $return[$property->getName()] = $value;
+                    $model[$property->getName()] = $value;
                 }
             }
         }

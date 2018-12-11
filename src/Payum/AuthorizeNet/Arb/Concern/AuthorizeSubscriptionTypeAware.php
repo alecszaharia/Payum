@@ -9,7 +9,7 @@
 namespace Payum\AuthorizeNet\Arb\Request\Concern;
 
 
-use net\authorize\api\contract\v1\SubscriptionDetailType;
+use net\authorize\api\contract\v1\ARBSubscriptionType;
 use Payum\AuthorizeNet\Arb\Transform\ArrayObjectTransform;
 use Payum\Core\Request\Generic;
 
@@ -18,26 +18,24 @@ trait AuthorizeSubscriptionTypeAware
     use ArrayObjectTransform;
 
     /**
-     * @var SubscriptionDetailType
+     * @var ARBSubscriptionType
      */
     protected $subscription;
 
     /**
-     * @param SubscriptionDetailType $subscription
+     * @param ARBSubscriptionType $subscription
      */
-    public function setSubscription(SubscriptionDetailType $subscription)
+    public function setSubscription(ARBSubscriptionType $subscription)
     {
         $this->subscription = $subscription;
 
-        if($this  instanceof Generic) {
-            $arrayObject = $this->toArrayObject($this->subscription);
-
-            $this->setModel($arrayObject);
+        if ($this instanceof Generic) {
+            $this->toArrayObject($this->subscription, $this->getModel());
         }
     }
 
     /**
-     * @return SubscriptionDetailType
+     * @return ARBSubscriptionType
      */
     public function getSubscription()
     {

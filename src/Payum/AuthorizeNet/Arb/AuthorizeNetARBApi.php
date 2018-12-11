@@ -34,7 +34,6 @@ class AuthorizeNetARBApi
         $this->merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
         $this->merchantAuthentication->setName($login_id);
         $this->merchantAuthentication->setTransactionKey($transaction_key);
-
         $this->sandbox = $sandbox;
     }
 
