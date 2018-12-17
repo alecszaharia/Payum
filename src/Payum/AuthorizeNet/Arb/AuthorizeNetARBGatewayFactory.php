@@ -5,14 +5,20 @@
  * Date: 12/3/18
  * Time: 11:41 PM
  */
+
 namespace Payum\AuthorizeNet\Arb;
 
 use Payum\AuthorizeNet\Arb\Action\CancelSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\CreateCustomerPaymentProfileAction;
+use Payum\AuthorizeNet\Arb\Action\CreateCustomerProfileAction;
 use Payum\AuthorizeNet\Arb\Action\CreateSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\GetCustomerPaymentProfileAction;
+use Payum\AuthorizeNet\Arb\Action\GetCustomerProfileAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionListAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionStatusAction;
 use Payum\AuthorizeNet\Arb\Action\UpdateSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
 use Payum\Core\GatewayFactory;
 use Payum\Core\Bridge\Spl\ArrayObject;
 
@@ -37,6 +43,10 @@ class AuthorizeNetARBGatewayFactory extends GatewayFactory
             'payum.action.subscription_list' => new GetSubscriptionListAction(),
             'payum.action.subscription_status' => new GetSubscriptionStatusAction(),
             'payum.action.update_subscription' => new UpdateSubscriptionAction(),
+            'payum.action.create_customer_profile' => new CreateCustomerProfileAction(),
+            'payum.action.create_customer_payment_profile' => new CreateCustomerPaymentProfileAction(),
+            'payum.action.get_customer_profile' => new GetCustomerProfileAction(),
+            'payum.action.get_customer_payment_profile' => new GetCustomerPaymentProfileAction(),
         ));
 
         if (false == $config['payum.api']) {
