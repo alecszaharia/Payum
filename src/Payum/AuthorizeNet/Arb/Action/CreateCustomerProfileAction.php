@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use net\authorize\api\contract\v1\CreateCustomerProfileResponse;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
 use Payum\Core\Action\ActionInterface;
@@ -29,9 +30,8 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
     }
 
     /**
-     * @param CreateCustomerProfileRequest $request
-     *
-     * @throws RequestNotSupportedException if the action dose not support the request.
+     * @param mixed $request
+     * @throws \Exception
      */
     public function execute($request)
     {
@@ -39,9 +39,17 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
 
         $profile = $request->getCustomerProfileType();
 
-        $profile = $this->api->createCustomerProfile($profile);
+        /**
+         * @var CreateCustomerProfileResponse $response ;
+         */
+        $response = $this->api->createCustomerProfile($profile);
 
-        $request->setCustomerProfileType($profile);
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            $request->setCustomerProfileId($response->getCustomerProfileId());
+        } else {
+            $errorMessages = $response->getMessages()->getMessage();
+            throw new \Exception($errorMessages[0]->getCode(), $errorMessages[0]->getText());
+        }
     }
 
     /**

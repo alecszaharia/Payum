@@ -41,9 +41,8 @@ class GetCustomerProfileAction implements ActionInterface, GatewayAwareInterface
 
         $customerProfileId = $request->getCustomerProfileId();
 
-        $profile = $this->api->getCustomerProfile($customerProfileId);
+        $response = $this->api->getCustomerProfile($customerProfileId);
 
-        $request->setCustomerProfileType($profile);
     }
 
     /**
