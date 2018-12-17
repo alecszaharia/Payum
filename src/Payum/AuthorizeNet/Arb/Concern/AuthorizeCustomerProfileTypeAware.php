@@ -6,7 +6,7 @@
  * Time: 12:07 AM
  */
 
-namespace Payum\AuthorizeNet\Arb\Request\Concern;
+namespace Payum\AuthorizeNet\Arb\Concern;
 
 
 use net\authorize\api\contract\v1\ARBSubscriptionType;
