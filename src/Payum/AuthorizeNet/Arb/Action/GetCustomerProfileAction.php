@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use net\authorize\api\contract\v1\GetCustomerProfileResponse;
 use net\authorize\api\contract\v1\SubscriptionDetailType;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetCustomerProfileRequest;
@@ -18,7 +19,6 @@ use \Payum\Core\GatewayAwareInterface;
 use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
 use \Payum\Core\GatewayAwareTrait;
-use Payum\Core\Model\ArrayObject;
 
 class GetCustomerProfileAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
@@ -31,9 +31,8 @@ class GetCustomerProfileAction implements ActionInterface, GatewayAwareInterface
     }
 
     /**
-     * @param GetCustomerProfileRequest $request
-     *
-     * @throws RequestNotSupportedException if the action dose not support the request.
+     * @param mixed $request
+     * @throws \Exception
      */
     public function execute($request)
     {
@@ -41,8 +40,17 @@ class GetCustomerProfileAction implements ActionInterface, GatewayAwareInterface
 
         $customerProfileId = $request->getCustomerProfileId();
 
+        /**
+         * @var GetCustomerProfileResponse $response ;
+         */
         $response = $this->api->getCustomerProfile($customerProfileId);
 
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            $request->setMaskedCustomerProfile($response->getProfile());
+        } else {
+            $errorMessages = $response->getMessages()->getMessage();
+            throw new \Exception($errorMessages[0]->getCode(), $errorMessages[0]->getText());
+        }
     }
 
     /**
@@ -52,6 +60,6 @@ class GetCustomerProfileAction implements ActionInterface, GatewayAwareInterface
      */
     public function supports($request)
     {
-        return $request instanceof GetCustomerProfileRequest && $request->getModel() instanceof ArrayObject;
+        return $request instanceof GetCustomerProfileRequest;
     }
 }

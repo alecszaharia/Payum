@@ -7,6 +7,7 @@
  */
 namespace Payum\AuthorizeNet\Arb\Request;
 
+use net\authorize\api\contract\v1\CustomerPaymentProfileMaskedType;
 use Payum\AuthorizeNet\Arb\Concern\AuthorizeCustomerPaymentProfileTypeAware;
 use Payum\Core\Request\Generic;
 
@@ -19,6 +20,10 @@ class GetCustomerPaymentProfileRequest extends Generic
      */
     private $customerPaymentProfileId;
 
+    /**
+     * @var CustomerPaymentProfileMaskedType
+     */
+    private $customerPaymentProfileMasked;
 
     /**
      * @return string
@@ -37,4 +42,23 @@ class GetCustomerPaymentProfileRequest extends Generic
         $this->customerPaymentProfileId = $customerPaymentProfileId;
         return $this;
     }
+
+    /**
+     * @return CustomerPaymentProfileMaskedType
+     */
+    public function getCustomerPaymentProfileMasked()
+    {
+        return $this->customerPaymentProfileMasked;
+    }
+
+    /**
+     * @param CustomerPaymentProfileMaskedType $customerPaymentProfileMasked
+     * @return GetCustomerPaymentProfileRequest
+     */
+    public function setCustomerPaymentProfileMasked(CustomerPaymentProfileMaskedType $customerPaymentProfileMasked): GetCustomerPaymentProfileRequest
+    {
+        $this->customerPaymentProfileMasked = $customerPaymentProfileMasked;
+        return $this;
+    }
+
 }

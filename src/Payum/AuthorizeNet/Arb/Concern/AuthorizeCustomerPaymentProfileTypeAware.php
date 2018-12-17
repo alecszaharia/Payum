@@ -24,6 +24,8 @@ trait AuthorizeCustomerPaymentProfileTypeAware
      */
     protected $customerPaymentProfile;
 
+
+
     /**
      * @param CustomerPaymentProfileType $customerPaymentProfile
      */

@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use net\authorize\api\contract\v1\GetCustomerPaymentProfileResponse;
 use net\authorize\api\contract\v1\SubscriptionDetailType;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetCustomerPaymentProfileRequest;
@@ -42,9 +43,12 @@ class GetCustomerPaymentProfileAction implements ActionInterface, GatewayAwareIn
 
         $customerPaymentProfileId = $request->getCustomerPaymentProfileId();
 
-        $profile = $this->api->getCustomerProfile($customerPaymentProfileId);
+        /**
+         * @var GetCustomerPaymentProfileResponse $response ;
+         */
+        $response = $this->api->getCustomerProfile($customerPaymentProfileId);
 
-        $request->setCustomerPaymentProfile($profile);
+        $request->setCustomerPaymentProfileMasked($response->getPaymentProfile());
     }
 
     /**

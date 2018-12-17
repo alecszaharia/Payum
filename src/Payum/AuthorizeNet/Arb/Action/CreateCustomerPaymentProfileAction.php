@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use net\authorize\api\contract\v1\CreateCustomerPaymentProfileResponse;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerPaymentProfileRequest;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
@@ -34,6 +35,7 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
      * @param CreateCustomerPaymentProfileRequest $request
      *
      * @throws RequestNotSupportedException if the action dose not support the request.
+     * @throws \Exception
      */
     public function execute($request)
     {
@@ -41,9 +43,18 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
 
         $profile = $request->getCustomerPaymentProfile();
 
-        $profile = $this->api->createCustomerPaymentProfile($profile);
+        /**
+         * @var CreateCustomerPaymentProfileResponse $response ;
+         */
+        $response = $this->api->createCustomerPaymentProfile($profile);
 
-        $request->setCustomerPaymentProfile($profile);
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            $request->setCustomerPaymentProfileId($response->getCustomerPaymentProfileId());
+            $request->setCustomerProfileId($response->getCustomerProfileId());
+        } else {
+            $errorMessages = $response->getMessages()->getMessage();
+            throw new \Exception($errorMessages[0]->getCode(), $errorMessages[0]->getText());
+        }
     }
 
     /**
@@ -53,7 +64,7 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
      */
     public function supports($request)
     {
-        return $request instanceof CreateCustomerPaymentProfileRequest && $request->getModel() instanceof ArrayObject;
+        return $request instanceof CreateCustomerPaymentProfileRequest;
     }
 
 }

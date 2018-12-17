@@ -13,4 +13,54 @@ use Payum\Core\Request\Generic;
 class CreateCustomerPaymentProfileRequest extends Generic
 {
     use AuthorizeCustomerPaymentProfileTypeAware;
+
+    /**
+     * @var string
+     */
+    private $customerPaymentProfileId;
+
+
+    /**
+     * @var string
+     */
+    private $customerProfileId;
+
+
+    /**
+     * @return mixed
+     */
+    public function getCustomerPaymentProfileId()
+    {
+        return $this->customerPaymentProfileId;
+    }
+
+    /**
+     * @param mixed $customerPaymentProfileId
+     * @return CreateCustomerPaymentProfileRequest
+     */
+    public function setCustomerPaymentProfileId($customerPaymentProfileId)
+    {
+        $this->customerPaymentProfileId = $customerPaymentProfileId;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomerProfileId()
+    {
+        return $this->customerProfileId;
+    }
+
+    /**
+     * @param mixed $customerProfileId
+     * @return CreateCustomerProfileRequest
+     */
+    public function setCustomerProfileId($customerProfileId)
+    {
+        $this->customerProfileId = $customerProfileId;
+        return $this;
+    }
+
+
 }
