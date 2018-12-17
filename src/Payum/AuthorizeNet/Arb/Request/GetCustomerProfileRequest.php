@@ -7,7 +7,7 @@
  */
 namespace Payum\AuthorizeNet\Arb\Request;
 
-use Payum\AuthorizeNet\Arb\Request\Concern\AuthorizeCustomerProfileTypeAware;
+use Payum\AuthorizeNet\Arb\Concern\AuthorizeCustomerProfileTypeAware;
 use Payum\Core\Request\Generic;
 
 class GetCustomerProfileRequest extends Generic

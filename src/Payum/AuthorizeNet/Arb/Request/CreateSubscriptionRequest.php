@@ -7,7 +7,7 @@
  */
 namespace Payum\AuthorizeNet\Arb\Request;
 
-use Payum\AuthorizeNet\Arb\Request\Concern\AuthorizeSubscriptionTypeAware;
+use Payum\AuthorizeNet\Arb\Concern\AuthorizeSubscriptionTypeAware;
 use Payum\Core\Request\Generic;
 
 class CreateSubscriptionRequest extends Generic
