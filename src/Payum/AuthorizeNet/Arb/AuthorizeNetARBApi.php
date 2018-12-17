@@ -49,15 +49,7 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBCreateSubscriptionController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
-
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
     }
 
     /**
@@ -75,17 +67,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBGetSubscriptionListController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-//            foreach ($response->getSubscriptionDetails() as $subscriptionDetails) {
-//                echo "Subscription ID: " . $subscriptionDetails->getId() . "\n";
-//            }
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
     /**
@@ -100,15 +83,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBGetSubscriptionController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
     /**
@@ -123,15 +99,9 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBGetSubscriptionStatusController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            // $response->getStatus()
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
+      
     }
 
     /**
@@ -148,15 +118,9 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBUpdateSubscriptionController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
+       
     }
 
 
@@ -172,15 +136,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\ARBCancelSubscriptionController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
 
@@ -196,15 +153,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\CreateCustomerProfileController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
 
@@ -220,15 +170,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\GetCustomerProfileController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
     /**
@@ -243,15 +186,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\CreateCustomerPaymentProfileController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
 
@@ -267,15 +203,8 @@ class AuthorizeNetARBApi
 
         $controller = new AnetController\GetCustomerPaymentProfileController($request);
 
-        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
-        } else {
-            //echo "ERROR :  Invalid response\n";
-            //$errorMessages = $response->getMessages()-f>getMessage();
-            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
-        }
     }
 
 
