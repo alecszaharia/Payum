@@ -183,6 +183,102 @@ class AuthorizeNetARBApi
         }
     }
 
+
+    /**
+     * @param AnetAPI\CustomerProfileType $customerProfileType
+     */
+    public function createCustomerProfile(AnetAPI\CustomerProfileType $customerProfileType)
+    {
+        $request = new AnetAPI\CreateCustomerProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setProfile( $customerProfileType );
+
+        $controller = new AnetController\CreateCustomerProfileController($request);
+
+        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
+        } else {
+            //echo "ERROR :  Invalid response\n";
+            //$errorMessages = $response->getMessages()-f>getMessage();
+            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+        }
+    }
+
+
+    /**
+     * @param string $customerProfileId
+     */
+    public function getCustomerProfile($customerProfileId)
+    {
+        $request = new AnetAPI\GetCustomerProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setCustomerProfileId($customerProfileId);
+
+        $controller = new AnetController\GetCustomerProfileController($request);
+
+        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
+        } else {
+            //echo "ERROR :  Invalid response\n";
+            //$errorMessages = $response->getMessages()-f>getMessage();
+            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+        }
+    }
+
+    /**
+     * @param AnetAPI\CustomerPaymentProfileType $paymentProfileType
+     */
+    public function createCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileType $paymentProfileType)
+    {
+        $request = new AnetAPI\CreateCustomerPaymentProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setPaymentProfile( $paymentProfileType );
+
+        $controller = new AnetController\CreateCustomerPaymentProfileController($request);
+
+        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
+        } else {
+            //echo "ERROR :  Invalid response\n";
+            //$errorMessages = $response->getMessages()-f>getMessage();
+            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+        }
+    }
+
+
+    /**
+     * @param $paymentProfileId
+     */
+    public function getCustomerPaymentProfile($paymentProfileId)
+    {
+        $request = new AnetAPI\GetCustomerPaymentProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setCustomerPaymentProfileId($paymentProfileId);
+
+        $controller = new AnetController\GetCustomerPaymentProfileController($request);
+
+        $response = $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            //echo "SUCCESS: Subscription ID : " . $response->getSubscriptionId() . "\n";
+        } else {
+            //echo "ERROR :  Invalid response\n";
+            //$errorMessages = $response->getMessages()-f>getMessage();
+            //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+        }
+    }
+
+
     /**
      * @return string
      */
