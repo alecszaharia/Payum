@@ -9,6 +9,7 @@
 namespace Payum\AuthorizeNet\Arb\Action;
 
 use net\authorize\api\contract\v1\SubscriptionDetailType;
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetCustomerPaymentProfileRequest;
 use Payum\AuthorizeNet\Arb\Request\GetCustomerProfileRequest;
 use Payum\AuthorizeNet\Arb\Request\GetSubscriptionRequest;
@@ -24,6 +25,11 @@ class GetCustomerPaymentProfileAction implements ActionInterface, GatewayAwareIn
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param GetCustomerPaymentProfileRequest $request

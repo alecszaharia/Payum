@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerPaymentProfileRequest;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
 use Payum\Core\Action\ActionInterface;
@@ -23,6 +24,11 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param CreateCustomerPaymentProfileRequest $request

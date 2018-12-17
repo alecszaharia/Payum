@@ -8,6 +8,7 @@
 namespace Payum\AuthorizeNet\Arb\Action;
 
 use net\authorize\api\contract\v1\SubscriptionDetailType;
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetSubscriptionRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -21,6 +22,11 @@ class GetSubscriptionAction implements ActionInterface, GatewayAwareInterface, A
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param GetSubscriptionRequest $request

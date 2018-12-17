@@ -7,6 +7,7 @@
  */
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CancelSubscriptionRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -19,6 +20,14 @@ class CancelSubscriptionAction implements ActionInterface, GatewayAwareInterface
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    /**
+     * CancelSubscriptionAction constructor.
+     */
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param CancelSubscriptionRequest $request

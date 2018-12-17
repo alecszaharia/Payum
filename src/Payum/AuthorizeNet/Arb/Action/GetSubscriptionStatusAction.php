@@ -7,6 +7,7 @@
  */
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetSubscriptionStatusRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -22,6 +23,11 @@ class GetSubscriptionStatusAction implements ActionInterface, GatewayAwareInterf
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param GetSubscriptionStatusRequest $request

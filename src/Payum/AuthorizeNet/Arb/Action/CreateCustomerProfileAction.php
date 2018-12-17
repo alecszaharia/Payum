@@ -8,6 +8,7 @@
 
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -15,13 +16,17 @@ use \Payum\Core\GatewayAwareInterface;
 use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
 use \Payum\Core\GatewayAwareTrait;
-use Payum\Core\Bridge\Spl\ArrayObject;
 
 
 class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
     use ApiAwareTrait;
     use GatewayAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = AuthorizeNetARBApi::class;
+    }
 
     /**
      * @param CreateCustomerProfileRequest $request
@@ -46,7 +51,7 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
      */
     public function supports($request)
     {
-        return $request instanceof CreateCustomerProfileRequest && $request->getModel() instanceof ArrayObject;
+        return $request instanceof CreateCustomerProfileRequest;
     }
 
 }
