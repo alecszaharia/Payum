@@ -60,7 +60,7 @@ class CreateSubscriptionAction implements ActionInterface, GatewayAwareInterface
      */
     public function supports($request)
     {
-        return $request instanceof CreateSubscriptionRequest && $request->getModel() instanceof ArrayObject;
+        return $request instanceof CreateSubscriptionRequest;
     }
 
 }
