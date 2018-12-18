@@ -46,6 +46,7 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
 
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             $request->setCustomerProfileId($response->getCustomerProfileId());
+            $request->setCustomerPaymentProfiles($response->getCustomerPaymentProfileIdList());
         } else {
             $errorMessages = $response->getMessages()->getMessage();
             throw new \Exception($errorMessages[0]->getText());
