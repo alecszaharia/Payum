@@ -5,8 +5,10 @@
  * Date: 12/3/18
  * Time: 11:48 PM
  */
+
 namespace Payum\AuthorizeNet\Arb\Action;
 
+use net\authorize\api\contract\v1\ARBCreateSubscriptionResponse;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateSubscriptionRequest;
 use Payum\Core\Action\ActionInterface;
@@ -30,8 +32,7 @@ class CreateSubscriptionAction implements ActionInterface, GatewayAwareInterface
 
     /**
      * @param CreateSubscriptionRequest $request
-     *
-     * @throws RequestNotSupportedException if the action dose not support the request.
+     * @throws \Exception
      */
     public function execute($request)
     {
@@ -39,9 +40,17 @@ class CreateSubscriptionAction implements ActionInterface, GatewayAwareInterface
 
         $subscription = $request->getSubscription();
 
-        $subscription = $this->api->createSubscription($subscription);
+        /**
+         * @var ARBCreateSubscriptionResponse $response ;
+         */
+        $response = $this->api->createSubscription($subscription);
 
-        $request->setSubscription($subscription);
+        if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+            $request->setSubscriptionId($response->getSubscriptionId());
+        } else {
+            $errorMessages = $response->getMessages()->getMessage();
+            throw new \Exception($errorMessages[0]->getText());
+        }
     }
 
     /**
