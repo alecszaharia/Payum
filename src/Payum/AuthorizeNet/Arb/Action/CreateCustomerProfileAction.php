@@ -48,7 +48,7 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
             $request->setCustomerProfileId($response->getCustomerProfileId());
         } else {
             $errorMessages = $response->getMessages()->getMessage();
-            throw new \Exception($errorMessages[0]->getCode(), $errorMessages[0]->getText());
+            throw new \Exception($errorMessages[0]->getText(), $errorMessages[0]->getCode());
         }
     }
 
