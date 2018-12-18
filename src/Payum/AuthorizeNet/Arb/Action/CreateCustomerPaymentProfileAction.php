@@ -53,7 +53,7 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
             $request->setCustomerProfileId($response->getCustomerProfileId());
         } else {
             $errorMessages = $response->getMessages()->getMessage();
-            throw new \Exception($errorMessages[0]->getText(), $errorMessages[0]->getCode());
+            throw new \Exception($errorMessages[0]->getText());
         }
     }
 
