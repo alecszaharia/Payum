@@ -101,7 +101,7 @@ class AuthorizeNetARBApi
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-      
+
     }
 
     /**
@@ -120,7 +120,7 @@ class AuthorizeNetARBApi
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
-       
+
     }
 
 
@@ -149,7 +149,7 @@ class AuthorizeNetARBApi
         $request = new AnetAPI\CreateCustomerProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
-        $request->setProfile( $customerProfileType );
+        $request->setProfile($customerProfileType);
 
         $controller = new AnetController\CreateCustomerProfileController($request);
 
@@ -182,7 +182,7 @@ class AuthorizeNetARBApi
         $request = new AnetAPI\CreateCustomerPaymentProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
-        $request->setPaymentProfile( $paymentProfileType );
+        $request->setPaymentProfile($paymentProfileType);
 
         $controller = new AnetController\CreateCustomerPaymentProfileController($request);
 

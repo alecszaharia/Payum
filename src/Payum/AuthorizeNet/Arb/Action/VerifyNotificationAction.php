@@ -32,13 +32,21 @@ class VerifyNotificationAction implements ActionInterface, GatewayAwareInterface
     }
 
     /**
-     * @param mixed $request
+     * @param VerifyNotificationRequest $request
      *
      * @throws RequestNotSupportedException if the action dose not support the request.
      */
     public function execute($request)
     {
-        $t = 0;
+        $getHttpRequest = $request->getRequest();
+
+        \var_dump($getHttpRequest);
+        exit;
+
+        $signatureKey = $request->getSignatureKey();
+        $headerHash = "";
+        $bodyHash = hash_hmac("sha512", $getHttpRequest->content, $signatureKey);
+        $request->setValid(md5($headerHash) === md5($bodyHash));
     }
 
     /**

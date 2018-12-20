@@ -18,6 +18,12 @@ class VerifyNotificationRequest
      */
     private $request;
 
+
+    /**
+     * @var string
+     */
+    private $signatureKey;
+
     /**
      * @var bool
      */
@@ -81,4 +87,23 @@ class VerifyNotificationRequest
         $this->validated = $validated;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getSignatureKey(): string
+    {
+        return $this->signatureKey;
+    }
+
+    /**
+     * @param string $signatureKey
+     * @return VerifyNotificationRequest
+     */
+    public function setSignatureKey(string $signatureKey): VerifyNotificationRequest
+    {
+        $this->signatureKey = $signatureKey;
+        return $this;
+    }
+
 }
