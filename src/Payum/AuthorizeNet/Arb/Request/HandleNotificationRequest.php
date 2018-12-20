@@ -9,7 +9,7 @@
 namespace Payum\AuthorizeNet\Arb\Request;
 
 
-class NotificationRequest
+class HandleNotificationRequest
 {
     /**
      * @var object
@@ -26,9 +26,9 @@ class NotificationRequest
 
     /**
      * @param \stdClass $notificationObject
-     * @return NotificationRequest
+     * @return HandleNotificationRequest
      */
-    public function setNotificationObject(\stdClass $notificationObject): NotificationRequest
+    public function setNotificationObject(\stdClass $notificationObject): HandleNotificationRequest
     {
         $this->notificationObject = $notificationObject;
         return $this;
