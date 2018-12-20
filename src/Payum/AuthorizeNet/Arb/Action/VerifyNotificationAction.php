@@ -39,14 +39,10 @@ class VerifyNotificationAction implements ActionInterface, GatewayAwareInterface
     public function execute($request)
     {
         $getHttpRequest = $request->getRequest();
-
-        \var_dump($getHttpRequest);
-        exit;
-
         $signatureKey = $request->getSignatureKey();
-        $headerHash = "";
+        $headerHash = \substr($getHttpRequest->headers['x-anet-signature'][0],7);
         $bodyHash = hash_hmac("sha512", $getHttpRequest->content, $signatureKey);
-        $request->setValid(md5($headerHash) === md5($bodyHash));
+        $request->setValid(hash_equals($headerHash, \strtoupper($bodyHash)));
     }
 
     /**
