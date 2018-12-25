@@ -17,6 +17,7 @@ use Payum\AuthorizeNet\Arb\Action\GetCustomerProfileAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionListAction;
 use Payum\AuthorizeNet\Arb\Action\GetSubscriptionStatusAction;
+use Payum\AuthorizeNet\Arb\Action\GetTransactionDetailsAction;
 use Payum\AuthorizeNet\Arb\Action\UpdateSubscriptionAction;
 use Payum\AuthorizeNet\Arb\Action\VerifyNotificationAction;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
@@ -49,6 +50,7 @@ class AuthorizeNetARBGatewayFactory extends GatewayFactory
             'payum.action.get_customer_profile' => new GetCustomerProfileAction(),
             'payum.action.get_customer_payment_profile' => new GetCustomerPaymentProfileAction(),
             'payum.action.verify_notification_request' => new VerifyNotificationAction(),
+            'payum.action.get_transaction_details' => new GetTransactionDetailsAction(),
         ));
 
         if (false == $config['payum.api']) {
