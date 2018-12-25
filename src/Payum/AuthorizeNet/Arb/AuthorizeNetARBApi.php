@@ -210,6 +210,7 @@ class AuthorizeNetARBApi
 
     /**
      * @param $paymentProfileId
+     * @return AnetAPI\CreateTransactionResponse
      */
     public function createTransaction(AnetAPI\TransactionRequestType $transaction)
     {
@@ -222,6 +223,22 @@ class AuthorizeNetARBApi
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
+    }
+
+    /**
+     * @param $transactionId
+     * @return AnetAPI\AnetApiResponseType
+     */
+    public function getTransactionDetails($transactionId)
+    {
+        $request = new AnetAPI\GetTransactionDetailsRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setTransId($transactionId);
+
+        $controller = new AnetController\GetTransactionDetailsController($request);
+
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
     }
 
 
