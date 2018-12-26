@@ -44,7 +44,12 @@ class GetTransactionDetailsAction implements ActionInterface, GatewayAwareInterf
 
         $transactionResponse = $this->api->getTransactionDetails($transactionId);
 
-        $request->setTransaction($transactionResponse->getTransaction());
+        if (($transactionResponse != null) && ($transactionResponse->getMessages()->getResultCode() == "Ok")) {
+            $request->setTransaction($transactionResponse->getTransaction());
+        } else {
+            $errorMessages = $transactionResponse->getMessages()->getMessage();
+            throw new \Exception($errorMessages[0]->getText());
+        }
     }
 
     /**
