@@ -13,15 +13,12 @@ use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\GetTransactionDetailsRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
-use \Payum\Core\GatewayAwareInterface;
 use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
-use \Payum\Core\GatewayAwareTrait;
 
-class GetTransactionDetailsAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
+class GetTransactionDetailsAction implements ActionInterface, ApiAwareInterface
 {
     use ApiAwareTrait;
-    use GatewayAwareTrait;
 
     public function __construct()
     {

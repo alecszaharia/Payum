@@ -175,6 +175,22 @@ class AuthorizeNetARBApi
     }
 
     /**
+     * @param $profileId
+     */
+    public function deleteCustomerProfile($profileId)
+    {
+        $request = new AnetAPI\DeleteCustomerProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setCustomerProfileId($profileId);
+
+        $controller = new AnetController\DeleteCustomerProfileController($request);
+
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+    }
+
+    /**
      * @param AnetAPI\CustomerPaymentProfileType $paymentProfileType
      */
     public function createCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileType $paymentProfileType)
@@ -206,6 +222,8 @@ class AuthorizeNetARBApi
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
 
     }
+
+
 
 
     /**

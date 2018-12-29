@@ -9,7 +9,6 @@
 namespace Payum\AuthorizeNet\Arb\Request;
 
 use net\authorize\api\contract\v1\TransactionDetailsType;
-use Payum\Core\Request\Generic;
 
 class GetTransactionDetailsRequest
 {
