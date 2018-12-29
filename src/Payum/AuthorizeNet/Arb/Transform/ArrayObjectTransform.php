@@ -27,7 +27,7 @@ trait ArrayObjectTransform
 
                 $value = $object->$getterMethod();
 
-                if (\is_object($value)) {
+                if (\is_object($value) && isset($model[$property->getName()])) {
                     $this->toArrayObject($value, $model[$property->getName()]);
                 } else {
                     $model[$property->getName()] = $value;
