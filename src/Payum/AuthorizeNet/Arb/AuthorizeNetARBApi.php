@@ -259,6 +259,27 @@ class AuthorizeNetARBApi
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
     }
 
+   /**
+     * @param $transactionId
+     * @return AnetAPI\AnetApiResponseType
+     */
+    public function voidTransaction($transactionId)
+    {
+        $transactionRequest = new AnetAPI\TransactionRequestType();
+        $transactionRequest->setTransactionType( "voidTransaction");
+        $transactionRequest->setRefTransId($transactionId);
+
+
+        $request = new AnetAPI\CreateTransactionRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setTransactionRequest( $transactionRequest );
+
+        $controller = new AnetController\CreateTransactionController($request);
+
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
+    }
+
 
     /**
      * @return string

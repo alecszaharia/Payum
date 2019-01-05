@@ -27,8 +27,7 @@ class GetTransactionDetailsAction implements ActionInterface, ApiAwareInterface
 
     /**
      * @param GetTransactionDetailsRequest $request
-     *
-     * @throws RequestNotSupportedException if the action dose not support the request.
+     * @throws \Exception
      */
     public function execute($request)
     {

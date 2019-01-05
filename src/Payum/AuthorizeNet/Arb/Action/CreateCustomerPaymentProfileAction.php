@@ -11,14 +11,12 @@ namespace Payum\AuthorizeNet\Arb\Action;
 use net\authorize\api\contract\v1\CreateCustomerPaymentProfileResponse;
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerPaymentProfileRequest;
-use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use \Payum\Core\GatewayAwareInterface;
 use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
 use \Payum\Core\GatewayAwareTrait;
-use Payum\Core\Bridge\Spl\ArrayObject;
 
 
 class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
@@ -66,5 +64,4 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
     {
         return $request instanceof CreateCustomerPaymentProfileRequest;
     }
-
 }

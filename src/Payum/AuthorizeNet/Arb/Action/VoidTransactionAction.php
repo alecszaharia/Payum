@@ -10,6 +10,7 @@ namespace Payum\AuthorizeNet\Arb\Action;
 
 use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\AuthorizeNet\Arb\Request\CancelSubscriptionRequest;
+use Payum\AuthorizeNet\Arb\Request\VoidTransactionRequest;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use \Payum\Core\GatewayAwareInterface;
@@ -17,10 +18,9 @@ use \Payum\Core\ApiAwareInterface;
 use \Payum\Core\ApiAwareTrait;
 use \Payum\Core\GatewayAwareTrait;
 
-class CancelSubscriptionAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
+class VoidTransactionAction implements ActionInterface, ApiAwareInterface
 {
     use ApiAwareTrait;
-    use GatewayAwareTrait;
 
     /**
      * CancelSubscriptionAction constructor.
@@ -31,15 +31,15 @@ class CancelSubscriptionAction implements ActionInterface, GatewayAwareInterface
     }
 
     /**
-     * @param CancelSubscriptionRequest $request
+     * @param VoidTransactionRequest $request
      *
      * @throws RequestNotSupportedException if the action dose not support the request.
      */
     public function execute($request)
     {
         RequestNotSupportedException::assertSupports($this, $request);
-        $subscription = $request->getSubscriptionId();
-        $this->api->cancelSubscription($subscription);
+        $getTransactionId = $request->getTransactionId();
+        $this->api->voidTransaction($getTransactionId);
     }
 
     /**
@@ -49,6 +49,6 @@ class CancelSubscriptionAction implements ActionInterface, GatewayAwareInterface
      */
     public function supports($request)
     {
-        return $request instanceof CancelSubscriptionRequest;
+        return $request instanceof VoidTransactionRequest && $request->getTransactionId();
     }
 }
