@@ -47,7 +47,7 @@ class GetCustomerPaymentProfileAction implements ActionInterface, GatewayAwareIn
         /**
          * @var GetCustomerPaymentProfileResponse $response ;
          */
-        $response = $this->api->getCustomerProfile($customerProfileId, $customerPaymentProfileId);
+        $response = $this->api->getCustomerPaymentProfile($customerProfileId, $customerPaymentProfileId);
 
         $request->setCustomerPaymentProfile($response->getPaymentProfile());
     }
