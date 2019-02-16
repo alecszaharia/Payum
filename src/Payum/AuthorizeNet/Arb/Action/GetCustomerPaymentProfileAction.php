@@ -42,13 +42,14 @@ class GetCustomerPaymentProfileAction implements ActionInterface, GatewayAwareIn
         RequestNotSupportedException::assertSupports($this, $request);
 
         $customerPaymentProfileId = $request->getCustomerPaymentProfileId();
+        $customerProfileId = $request->getCustomerProfileId();
 
         /**
          * @var GetCustomerPaymentProfileResponse $response ;
          */
-        $response = $this->api->getCustomerProfile($customerPaymentProfileId);
+        $response = $this->api->getCustomerProfile($customerProfileId, $customerPaymentProfileId);
 
-        $request->setCustomerPaymentProfileMasked($response->getPaymentProfile());
+        $request->setCustomerPaymentProfile($response->getPaymentProfile());
     }
 
     /**

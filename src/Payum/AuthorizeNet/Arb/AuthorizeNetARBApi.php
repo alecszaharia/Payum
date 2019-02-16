@@ -256,15 +256,17 @@ class AuthorizeNetARBApi
 
 
     /**
-     * @param $paymentProfileId
+     * @param $customerProfileId
+     * @param $customerPaymentProfileId
      * @return AnetAPI\AnetApiResponseType
      */
-    public function getCustomerPaymentProfile($paymentProfileId)
+    public function getCustomerPaymentProfile($customerProfileId, $customerPaymentProfileId)
     {
         $request = new AnetAPI\GetCustomerPaymentProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
-        $request->setCustomerPaymentProfileId($paymentProfileId);
+        $request->setCustomerProfileId($customerProfileId);
+        $request->setCustomerPaymentProfileId($customerPaymentProfileId);
 
         $controller = new AnetController\GetCustomerPaymentProfileController($request);
 

@@ -5,6 +5,7 @@
  * Date: 12/4/18
  * Time: 12:55 AM
  */
+
 namespace Payum\AuthorizeNet\Arb\Request;
 
 use net\authorize\api\contract\v1\CustomerPaymentProfileMaskedType;
@@ -21,9 +22,10 @@ class GetCustomerPaymentProfileRequest extends Generic
     private $customerPaymentProfileId;
 
     /**
-     * @var CustomerPaymentProfileMaskedType
+     * @var string
      */
-    private $customerPaymentProfileMasked;
+    private $customerProfileId;
+
 
     /**
      * @return string
@@ -44,21 +46,20 @@ class GetCustomerPaymentProfileRequest extends Generic
     }
 
     /**
-     * @return CustomerPaymentProfileMaskedType
+     * @return string
      */
-    public function getCustomerPaymentProfileMasked()
+    public function getCustomerProfileId(): string
     {
-        return $this->customerPaymentProfileMasked;
+        return $this->customerProfileId;
     }
 
     /**
-     * @param CustomerPaymentProfileMaskedType $customerPaymentProfileMasked
+     * @param string $customerProfileId
      * @return GetCustomerPaymentProfileRequest
      */
-    public function setCustomerPaymentProfileMasked(CustomerPaymentProfileMaskedType $customerPaymentProfileMasked): GetCustomerPaymentProfileRequest
+    public function setCustomerProfileId(string $customerProfileId): GetCustomerPaymentProfileRequest
     {
-        $this->customerPaymentProfileMasked = $customerPaymentProfileMasked;
+        $this->customerProfileId = $customerProfileId;
         return $this;
     }
-
 }
