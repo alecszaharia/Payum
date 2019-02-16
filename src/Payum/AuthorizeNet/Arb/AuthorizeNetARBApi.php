@@ -39,6 +39,7 @@ class AuthorizeNetARBApi
 
     /**
      * @param AnetAPI\ARBSubscriptionType $subscription
+     * @return AnetAPI\AnetApiResponseType
      */
     public function createSubscription(AnetAPI\ARBSubscriptionType $subscription)
     {
@@ -55,6 +56,7 @@ class AuthorizeNetARBApi
     /**
      * @param AnetAPI\ARBGetSubscriptionListSortingType $sorting
      * @param AnetAPI\PagingType $paging
+     * @return AnetAPI\AnetApiResponseType
      */
     public function getSubscriptionList(AnetAPI\ARBGetSubscriptionListSortingType $sorting, AnetAPI\PagingType $paging)
     {
@@ -72,7 +74,8 @@ class AuthorizeNetARBApi
     }
 
     /**
-     * @param string $subscriptionId
+     * @param $subscriptionId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function getSubscription($subscriptionId)
     {
@@ -88,7 +91,8 @@ class AuthorizeNetARBApi
     }
 
     /**
-     * @param string $subscriptionId
+     * @param $subscriptionId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function getSubscriptionStatus($subscriptionId)
     {
@@ -107,6 +111,7 @@ class AuthorizeNetARBApi
     /**
      * @param $subscriptionId
      * @param AnetAPI\ARBSubscriptionType $subscriptionPartial
+     * @return AnetAPI\AnetApiResponseType
      */
     public function updateSubscription($subscriptionId, AnetAPI\ARBSubscriptionType $subscriptionPartial)
     {
@@ -125,7 +130,8 @@ class AuthorizeNetARBApi
 
 
     /**
-     * @param string $subscriptionId
+     * @param $subscriptionId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function cancelSubscription($subscriptionId)
     {
@@ -143,6 +149,7 @@ class AuthorizeNetARBApi
 
     /**
      * @param AnetAPI\CustomerProfileType $customerProfileType
+     * @return AnetAPI\AnetApiResponseType
      */
     public function createCustomerProfile(AnetAPI\CustomerProfileType $customerProfileType)
     {
@@ -159,7 +166,8 @@ class AuthorizeNetARBApi
 
 
     /**
-     * @param string $customerProfileId
+     * @param $customerProfileId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function getCustomerProfile($customerProfileId)
     {
@@ -176,6 +184,7 @@ class AuthorizeNetARBApi
 
     /**
      * @param $profileId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function deleteCustomerProfile($profileId)
     {
@@ -192,6 +201,7 @@ class AuthorizeNetARBApi
 
     /**
      * @param AnetAPI\CustomerPaymentProfileType $paymentProfileType
+     * @return AnetAPI\AnetApiResponseType+
      */
     public function createCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileType $paymentProfileType)
     {
@@ -206,9 +216,48 @@ class AuthorizeNetARBApi
 
     }
 
+    /**
+     * @param AnetAPI\CustomerPaymentProfileExType $paymentProfileType
+     * @return AnetAPI\AnetApiResponseType
+     */
+    public function updateCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileExType $paymentProfileType)
+    {
+        $request = new AnetAPI\UpdateCustomerPaymentProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setCustomerProfileId($paymentProfileType->getCustomerPaymentProfileId());
+        $request->setPaymentProfile($paymentProfileType);
+
+        $controller = new AnetController\UpdateCustomerPaymentProfileController($request);
+
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
+
+    }
+
+    /**
+     * @param $customerProfileId
+     * @param $customerPaymentProfileId
+     * @param string $validationmode
+     * @return AnetAPI\AnetApiResponseType
+     */
+    public function validateCustomerPaymentProfile($customerProfileId, $customerPaymentProfileId, $validationmode = "testMode")
+    {
+        $request = new AnetAPI\ValidateCustomerPaymentProfileRequest();
+        $request->setMerchantAuthentication($this->merchantAuthentication);
+        $request->setRefId($this->generateRefId());
+        $request->setCustomerProfileId($customerProfileId);
+        $request->setCustomerPaymentProfileId($customerPaymentProfileId);
+        $request->setValidationMode($validationmode);
+
+        $controller = new AnetController\ValidateCustomerPaymentProfileController($request);
+
+        return $controller->executeWithApiResponse($this->getEnvironmentUri());
+    }
+
 
     /**
      * @param $paymentProfileId
+     * @return AnetAPI\AnetApiResponseType
      */
     public function getCustomerPaymentProfile($paymentProfileId)
     {
@@ -220,15 +269,12 @@ class AuthorizeNetARBApi
         $controller = new AnetController\GetCustomerPaymentProfileController($request);
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
-
     }
 
 
-
-
     /**
-     * @param $paymentProfileId
-     * @return AnetAPI\CreateTransactionResponse
+     * @param AnetAPI\TransactionRequestType $transaction
+     * @return AnetAPI\AnetApiResponseType
      */
     public function createTransaction(AnetAPI\TransactionRequestType $transaction)
     {
@@ -240,7 +286,6 @@ class AuthorizeNetARBApi
         $controller = new AnetController\CreateTransactionController($request);
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
-
     }
 
     /**
@@ -259,21 +304,20 @@ class AuthorizeNetARBApi
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
     }
 
-   /**
+    /**
      * @param $transactionId
      * @return AnetAPI\AnetApiResponseType
      */
     public function voidTransaction($transactionId)
     {
         $transactionRequest = new AnetAPI\TransactionRequestType();
-        $transactionRequest->setTransactionType( "voidTransaction");
+        $transactionRequest->setTransactionType("voidTransaction");
         $transactionRequest->setRefTransId($transactionId);
-
 
         $request = new AnetAPI\CreateTransactionRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
-        $request->setTransactionRequest( $transactionRequest );
+        $request->setTransactionRequest($transactionRequest);
 
         $controller = new AnetController\CreateTransactionController($request);
 
