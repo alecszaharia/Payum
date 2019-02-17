@@ -31,7 +31,7 @@ class UpdateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
     }
 
     /**
-     * @param CreateCustomerPaymentProfileRequest $request
+     * @param UpdateCustomerPaymentProfileRequest $request
      *
      * @throws RequestNotSupportedException if the action dose not support the request.
      * @throws \Exception
@@ -40,7 +40,7 @@ class UpdateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
-        $profile = $request->getCustomerPaymentProfile();
+        $profile = $request->getCustomerPaymentProfileAsExType();
 
         /**
          * @var CreateCustomerPaymentProfileResponse $response ;

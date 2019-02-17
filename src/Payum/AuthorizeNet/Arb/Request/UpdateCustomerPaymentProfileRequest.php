@@ -9,8 +9,10 @@
 namespace Payum\AuthorizeNet\Arb\Request;
 
 use net\authorize\api\contract\v1\CustomerPaymentProfileExType;
+use net\authorize\api\contract\v1\CustomerPaymentProfileMaskedType;
 use Payum\AuthorizeNet\Arb\Transform\ArrayObjectTransform;
 use Payum\Core\Request\Generic;
+use net\authorize\api\contract\v1 as AnetAPI;
 
 class UpdateCustomerPaymentProfileRequest extends Generic
 {
@@ -23,14 +25,14 @@ class UpdateCustomerPaymentProfileRequest extends Generic
 
 
     /**
-     * @var CustomerPaymentProfileExType
+     * @var CustomerPaymentProfileMaskedType
      */
     protected $customerPaymentProfile;
 
     /**
-     * @param CustomerPaymentProfileExType $customerPaymentProfile
+     * @param CustomerPaymentProfileMaskedType $customerPaymentProfile
      */
-    public function setCustomerPaymentProfile(CustomerPaymentProfileExType $customerPaymentProfile)
+    public function setCustomerPaymentProfile(CustomerPaymentProfileMaskedType $customerPaymentProfile)
     {
         $this->customerPaymentProfile = $customerPaymentProfile;
 
@@ -40,7 +42,7 @@ class UpdateCustomerPaymentProfileRequest extends Generic
     }
 
     /**
-     * @return CustomerPaymentProfileExType
+     * @return CustomerPaymentProfileMaskedType
      */
     public function getCustomerPaymentProfile()
     {
@@ -57,7 +59,7 @@ class UpdateCustomerPaymentProfileRequest extends Generic
 
     /**
      * @param mixed $customerProfileId
-     * @return CreateCustomerProfileRequest
+     * @return UpdateCustomerPaymentProfileRequest
      */
     public function setCustomerProfileId($customerProfileId)
     {
@@ -65,5 +67,24 @@ class UpdateCustomerPaymentProfileRequest extends Generic
         return $this;
     }
 
+    public function getCustomerPaymentProfileAsExType()
+    {
+        $billto = $this->getCustomerPaymentProfile()->getBillTo();
+
+        $maskedCard = $this->getCustomerPaymentProfile()->getPayment()->getCreditCard();
+        $creditCard = new AnetAPI\CreditCardType();
+        $creditCard->setCardNumber($maskedCard->getCardNumber());
+        $creditCard->setExpirationDate($maskedCard->getExpirationDate());
+
+        $paymentCreditCard = new AnetAPI\PaymentType();
+        $paymentCreditCard->setCreditCard($creditCard);
+
+        $paymentprofile = new AnetAPI\CustomerPaymentProfileExType();
+        $paymentprofile->setBillTo($billto);
+        $paymentprofile->setPayment($paymentCreditCard);
+        $paymentprofile->setCustomerPaymentProfileId($this->getCustomerPaymentProfile()->getCustomerPaymentProfileId());
+
+        return $paymentprofile;
+    }
 
 }
