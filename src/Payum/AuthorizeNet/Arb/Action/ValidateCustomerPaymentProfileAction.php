@@ -63,6 +63,6 @@ class ValidateCustomerPaymentProfileAction implements ActionInterface, GatewayAw
      */
     public function supports($request)
     {
-        return $request instanceof UpdateCustomerPaymentProfileRequest;
+        return $request instanceof ValidateCustomerPaymentProfileRequest;
     }
 }
