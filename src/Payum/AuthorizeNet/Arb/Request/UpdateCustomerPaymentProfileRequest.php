@@ -25,14 +25,14 @@ class UpdateCustomerPaymentProfileRequest extends Generic
 
 
     /**
-     * @var CustomerPaymentProfileMaskedType
+     * @var CustomerPaymentProfileExType
      */
     protected $customerPaymentProfile;
 
     /**
-     * @param CustomerPaymentProfileMaskedType $customerPaymentProfile
+     * @param CustomerPaymentProfileExType $customerPaymentProfile
      */
-    public function setCustomerPaymentProfile(CustomerPaymentProfileMaskedType $customerPaymentProfile)
+    public function setCustomerPaymentProfile(CustomerPaymentProfileExType $customerPaymentProfile)
     {
         $this->customerPaymentProfile = $customerPaymentProfile;
 
@@ -42,7 +42,7 @@ class UpdateCustomerPaymentProfileRequest extends Generic
     }
 
     /**
-     * @return CustomerPaymentProfileMaskedType
+     * @return CustomerPaymentProfileExType
      */
     public function getCustomerPaymentProfile()
     {
