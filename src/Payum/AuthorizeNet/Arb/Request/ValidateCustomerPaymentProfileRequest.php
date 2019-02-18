@@ -19,12 +19,12 @@ class ValidateCustomerPaymentProfileRequest extends Generic
     /**
      * @var string
      */
-    private $customerProfileId;
+    private $customerProfileId = '';
 
     /**
      * @var string
      */
-    private $customerPaymentProfileId;
+    private $customerPaymentProfileId = '';
 
     /**
      * @var string
