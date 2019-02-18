@@ -21,9 +21,11 @@ use Payum\AuthorizeNet\Arb\Action\GetSubscriptionStatusAction;
 use Payum\AuthorizeNet\Arb\Action\GetTransactionDetailsAction;
 use Payum\AuthorizeNet\Arb\Action\UpdateCustomerPaymentProfileAction;
 use Payum\AuthorizeNet\Arb\Action\UpdateSubscriptionAction;
+use Payum\AuthorizeNet\Arb\Action\ValidateCustomerPaymentProfileAction;
 use Payum\AuthorizeNet\Arb\Action\VerifyNotificationAction;
 use Payum\AuthorizeNet\Arb\Action\VoidTransactionAction;
 use Payum\AuthorizeNet\Arb\Request\CreateCustomerProfileRequest;
+use Payum\AuthorizeNet\Arb\Request\ValidateCustomerPaymentProfileRequest;
 use Payum\Core\GatewayFactory;
 use Payum\Core\Bridge\Spl\ArrayObject;
 
@@ -53,6 +55,7 @@ class AuthorizeNetARBGatewayFactory extends GatewayFactory
             'payum.action.get_customer_profile' => new GetCustomerProfileAction(),
             'payum.action.get_customer_payment_profile' => new GetCustomerPaymentProfileAction(),
             'payum.action.update_customer_creditcard' => new UpdateCustomerPaymentProfileAction(),
+            'payum.action.validate_payment_profile' => new ValidateCustomerPaymentProfileAction(),
             'payum.action.verify_notification_request' => new VerifyNotificationAction(),
             'payum.action.get_transaction_details' => new GetTransactionDetailsAction(),
             'payum.action.delete_customer_profile' => new DeleteCustomerProfileAction(),
