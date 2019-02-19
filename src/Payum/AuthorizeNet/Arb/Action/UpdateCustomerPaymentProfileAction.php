@@ -45,7 +45,7 @@ class UpdateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
         /**
          * @var CreateCustomerPaymentProfileResponse $response ;
          */
-        $response = $this->api->updateCustomerPaymentProfile($profile);
+        $response = $this->api->updateCustomerPaymentProfile($request->getCustomerProfileId(), $profile);
 
         if (\is_null($response) || ($response->getMessages()->getResultCode() != "Ok")) {
             $errorMessages = $response->getMessages()->getMessage();
