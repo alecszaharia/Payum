@@ -334,7 +334,7 @@ class AuthorizeNetARBApi
     private function getEnvironmentUri()
     {
         if ($this->sandbox)
-            return \net\authorize\api\constants\ANetEnvironment::PRODUCTION;
+            return \net\authorize\api\constants\ANetEnvironment::SANDBOX;
 
         return \net\authorize\api\constants\ANetEnvironment::PRODUCTION;
     }
