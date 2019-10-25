@@ -1,13 +1,14 @@
 <?php
 namespace Payum\Core;
 
+use Payum\AuthorizeNet\Arb\AuthorizeNetARBApi;
 use Payum\Core\Exception\LogicException;
 use Payum\Core\Exception\UnsupportedApiException;
 
 trait ApiAwareTrait
 {
     /**
-     * @var mixed
+     * @var AuthorizeNetARBApi
      */
     protected $api;
 

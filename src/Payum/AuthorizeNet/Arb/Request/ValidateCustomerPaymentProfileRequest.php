@@ -32,6 +32,11 @@ class ValidateCustomerPaymentProfileRequest extends Generic
     private $validationMode = 'testMode';
 
     /**
+     * @var string
+     */
+    private $cardCode = '';
+
+    /**
      * @return string
      */
     public function getCustomerProfileId(): string
@@ -82,6 +87,24 @@ class ValidateCustomerPaymentProfileRequest extends Generic
     public function setValidationMode(string $validationMode): ValidateCustomerPaymentProfileRequest
     {
         $this->validationMode = $validationMode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCardCode(): string
+    {
+        return $this->cardCode;
+    }
+
+    /**
+     * @param string $cardCode
+     * @return ValidateCustomerPaymentProfileRequest
+     */
+    public function setCardCode(string $cardCode): ValidateCustomerPaymentProfileRequest
+    {
+        $this->cardCode = $cardCode;
         return $this;
     }
 

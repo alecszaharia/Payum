@@ -238,17 +238,19 @@ class AuthorizeNetARBApi
     /**
      * @param $customerProfileId
      * @param $customerPaymentProfileId
-     * @param string $validationmode
+     * @param $cardCode
+     * @param string $validationMode
      * @return AnetAPI\AnetApiResponseType
      */
-    public function validateCustomerPaymentProfile($customerProfileId, $customerPaymentProfileId, $validationmode = "testMode")
+    public function validateCustomerPaymentProfile($customerProfileId, $customerPaymentProfileId, $cardCode, $validationMode = "testMode")
     {
         $request = new AnetAPI\ValidateCustomerPaymentProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
-        $request->setValidationMode($validationmode);
+        $request->setValidationMode($validationMode);
+        $request->setCardCode($cardCode);
 
         $controller = new AnetController\ValidateCustomerPaymentProfileController($request);
 
@@ -326,7 +328,6 @@ class AuthorizeNetARBApi
 
         return $controller->executeWithApiResponse($this->getEnvironmentUri());
     }
-
 
     /**
      * @return string

@@ -43,12 +43,13 @@ class ValidateCustomerPaymentProfileAction implements ActionInterface, GatewayAw
 
         $profileId = $request->getCustomerProfileId();
         $paymentProfileId = $request->getCustomerPaymentProfileId();
-        $validationMOde = $request->getValidationMode();
+        $validationMode = $request->getValidationMode();
+        $cardCode = $request->getCardCode();
 
         /**
          * @var CreateCustomerPaymentProfileResponse $response ;
          */
-        $response = $this->api->validateCustomerPaymentProfile($profileId, $paymentProfileId, $validationMOde);
+        $response = $this->api->validateCustomerPaymentProfile($profileId, $paymentProfileId, $cardCode, $validationMode);
 
         if (\is_null($response) || ($response->getMessages()->getResultCode() != "Ok")) {
             $errorMessages = $response->getMessages()->getMessage();
