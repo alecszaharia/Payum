@@ -149,14 +149,16 @@ class AuthorizeNetARBApi
 
     /**
      * @param AnetAPI\CustomerProfileType $customerProfileType
+     * @param string $validationMode
      * @return AnetAPI\AnetApiResponseType
      */
-    public function createCustomerProfile(AnetAPI\CustomerProfileType $customerProfileType)
+    public function createCustomerProfile(AnetAPI\CustomerProfileType $customerProfileType,$validationMode='testMode')
     {
         $request = new AnetAPI\CreateCustomerProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
         $request->setProfile($customerProfileType);
+        $request->setValidationMode($validationMode);
 
         $controller = new AnetController\CreateCustomerProfileController($request);
 

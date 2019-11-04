@@ -26,6 +26,11 @@ class CreateCustomerProfileRequest extends Generic
     protected $customerPaymentProfiles = array();
 
     /**
+     * @var string
+     */
+    private $validationMode = 'testMode';
+
+    /**
      * @return mixed
      */
     public function getCustomerProfileId()
@@ -42,6 +47,26 @@ class CreateCustomerProfileRequest extends Generic
         $this->customerProfileId = $customerProfileId;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getValidationMode(): string
+    {
+        return $this->validationMode;
+    }
+
+    /**
+     * @param string $validationMode
+     * @return CreateCustomerProfileRequest
+     */
+    public function setValidationMode(string $validationMode): CreateCustomerProfileRequest
+    {
+        $this->validationMode = $validationMode;
+        return $this;
+    }
+
+
 
     /**
      * @return array

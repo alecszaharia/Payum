@@ -38,15 +38,17 @@ class CreateCustomerProfileAction implements ActionInterface, GatewayAwareInterf
         RequestNotSupportedException::assertSupports($this, $request);
 
         $profile = $request->getCustomerProfileType();
+        $validationMode = $request->getValidationMode();
 
         /**
          * @var CreateCustomerProfileResponse $response ;
          */
-        $response = $this->api->createCustomerProfile($profile);
+        $response = $this->api->createCustomerProfile($profile, $validationMode);
 
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             $request->setCustomerProfileId($response->getCustomerProfileId());
             $request->setCustomerPaymentProfiles($response->getCustomerPaymentProfileIdList());
+
         } else {
             $errorMessages = $response->getMessages()->getMessage();
             throw new \Exception($errorMessages[0]->getText());
