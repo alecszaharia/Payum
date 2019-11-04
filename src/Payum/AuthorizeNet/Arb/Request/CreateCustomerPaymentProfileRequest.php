@@ -5,6 +5,7 @@
  * Date: 12/4/18
  * Time: 12:55 AM
  */
+
 namespace Payum\AuthorizeNet\Arb\Request;
 
 use Payum\AuthorizeNet\Arb\Concern\AuthorizeCustomerPaymentProfileTypeAware;
@@ -25,6 +26,10 @@ class CreateCustomerPaymentProfileRequest extends Generic
      */
     private $customerProfileId;
 
+    /**
+     * @var string
+     */
+    private $validationMode = null;
 
     /**
      * @return mixed
@@ -62,5 +67,22 @@ class CreateCustomerPaymentProfileRequest extends Generic
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getValidationMode(): string
+    {
+        return $this->validationMode;
+    }
+
+    /**
+     * @param string $validationMode
+     * @return CreateCustomerPaymentProfileRequest
+     */
+    public function setValidationMode(string $validationMode): CreateCustomerPaymentProfileRequest
+    {
+        $this->validationMode = $validationMode;
+        return $this;
+    }
 
 }

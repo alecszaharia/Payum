@@ -201,14 +201,19 @@ class AuthorizeNetARBApi
 
     /**
      * @param AnetAPI\CustomerPaymentProfileType $paymentProfileType
-     * @return AnetAPI\AnetApiResponseType+
+     * @param null $validationMode
+     * @return AnetAPI\AnetApiResponseType
      */
-    public function createCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileType $paymentProfileType)
+    public function createCustomerPaymentProfile(AnetAPI\CustomerPaymentProfileType $paymentProfileType, $validationMode=null)
     {
         $request = new AnetAPI\CreateCustomerPaymentProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
         $request->setPaymentProfile($paymentProfileType);
+
+        if($validationMode) {
+            $request->setValidationMode($validationMode);
+        }
 
         $controller = new AnetController\CreateCustomerPaymentProfileController($request);
 
@@ -219,15 +224,20 @@ class AuthorizeNetARBApi
     /**
      * @param $customerProfileId
      * @param AnetAPI\CustomerPaymentProfileExType $paymentProfileType
+     * @param null $validationMode
      * @return AnetAPI\AnetApiResponseType
      */
-    public function updateCustomerPaymentProfile($customerProfileId, AnetAPI\CustomerPaymentProfileExType $paymentProfileType)
+    public function updateCustomerPaymentProfile($customerProfileId, AnetAPI\CustomerPaymentProfileExType $paymentProfileType, $validationMode=null)
     {
         $request = new AnetAPI\UpdateCustomerPaymentProfileRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->generateRefId());
         $request->setCustomerProfileId($customerProfileId);
         $request->setPaymentProfile($paymentProfileType);
+
+        if($validationMode) {
+            $request->setValidationMode($validationMode);
+        }
 
         $controller = new AnetController\UpdateCustomerPaymentProfileController($request);
 

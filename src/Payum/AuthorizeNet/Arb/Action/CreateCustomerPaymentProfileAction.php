@@ -44,7 +44,7 @@ class CreateCustomerPaymentProfileAction implements ActionInterface, GatewayAwar
         /**
          * @var CreateCustomerPaymentProfileResponse $response ;
          */
-        $response = $this->api->createCustomerPaymentProfile($profile);
+        $response = $this->api->createCustomerPaymentProfile($profile, $request->getValidationMode());
 
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             $request->setCustomerPaymentProfileId($response->getCustomerPaymentProfileId());

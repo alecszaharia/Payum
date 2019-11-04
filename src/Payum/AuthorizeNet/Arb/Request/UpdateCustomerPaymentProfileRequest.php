@@ -30,6 +30,11 @@ class UpdateCustomerPaymentProfileRequest extends Generic
     protected $customerPaymentProfile;
 
     /**
+     * @var string
+     */
+    protected $validationMode = null;
+
+    /**
      * @param CustomerPaymentProfileExType $customerPaymentProfile
      */
     public function setCustomerPaymentProfile(CustomerPaymentProfileExType $customerPaymentProfile)
@@ -64,6 +69,24 @@ class UpdateCustomerPaymentProfileRequest extends Generic
     public function setCustomerProfileId($customerProfileId)
     {
         $this->customerProfileId = $customerProfileId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValidationMode(): string
+    {
+        return $this->validationMode;
+    }
+
+    /**
+     * @param string $validationMode
+     * @return UpdateCustomerPaymentProfileRequest
+     */
+    public function setValidationMode(string $validationMode): UpdateCustomerPaymentProfileRequest
+    {
+        $this->validationMode = $validationMode;
         return $this;
     }
 
